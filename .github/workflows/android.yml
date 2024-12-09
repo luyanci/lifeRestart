@@ -1,6 +1,7 @@
 name: Android CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
   pull_request:
@@ -25,3 +26,8 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
       working-directory: lifeRestart
+    - name: Upload build
+      uses: actions/upload-artifact@v4
+      with:
+        name: build
+        path: lifeRestart/build/*
